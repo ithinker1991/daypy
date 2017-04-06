@@ -4,3 +4,13 @@ htmlcov
 .tox
 MANIFEST
 *.egg-info
+
+*.swp
+media/
+IAP/
+*.out
+.ropeproject
+.idea
+tmp/
+logs/
+local_settings.py
