@@ -14,6 +14,8 @@ def fff():
 class jj(object):
     pass
 
+
+print dir(jj)
 print jj.__name__
 
 print fff.func_name
