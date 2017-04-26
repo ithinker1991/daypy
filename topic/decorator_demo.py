@@ -17,6 +17,7 @@ class jj(object):
 
 print dir(jj)
 print jj.__name__
+print
 
 print fff.func_name
 
