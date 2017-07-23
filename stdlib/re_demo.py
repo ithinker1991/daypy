@@ -92,25 +92,25 @@ click_regxs = {
 #         print click_regxs[key][1]
 #     print ret
 
-
-
-with open('/home/ashu/daypy/data/test_re.txt') as fd:
-    pattern = re.compile(r'.*_t=(ch_444|ch_437)(\.[0-9]+)?\.rec\.b\.3')
-    i, j= 0, 0
-    for line in fd:
-        j +=1
-        id, uri = line.strip().split()
-        m = pattern.match(uri)
-        if m:
-            i += 1
-            print '---' * 100
-            print uri
-            print m.group(0)
-        else:
-            print uri
-
-
-    print j, i
+#
+#
+# with open('/home/ashu/daypy/data/test_re.txt') as fd:
+#     pattern = re.compile(r'.*_t=(ch_444|ch_437)(\.[0-9]+)?\.rec\.b\.3')
+#     i, j= 0, 0
+#     for line in fd:
+#         j +=1
+#         id, uri = line.strip().split()
+#         m = pattern.match(uri)
+#         if m:
+#             i += 1
+#             print '---' * 100
+#             print uri
+#             print m.group(0)
+#         else:
+#             print uri
+#
+#
+#     print j, i
 
 
 
@@ -163,7 +163,101 @@ def load_local_file(input_f):
             yield line
 
 
+def exact_info():
+    url = u'ch_650|651.3.booklist.item.0*100_351998!r.b.0*reason_11984|361620*2_361620!r.b.4*item_302633*2_302633!r.b.7*item_301342*2_301342';
+
+    url1 = u'ch_650|651.0.slider.item.0*101_12027!b.6*2_295059!b.2*2_317580!r.b.6*reason_10948|40084*2_40084'
+
+    urls = [
+        u'ch_650|651.1.tab.item.1*3_/hs/market/channel/405?multi_url=/hs/market/channel/405,/hs/market/channel/406&multi_title=男生,女生',
+        u'ch_650|651.1.tab.item.1*3_/hs/market/channel/405?multi_url=/hs/market/channel/405,/hs/market/channel/406&multi_title=男生,女生!ch_405.0.b.1*2_356218!r.b.0*item_315258*2_315258!r.b.6*reason_1000276|49377*2_49377'
+        ,u'ch_444.wtf.4.b.1*duokan-rf_reason_duokan_rank_v3-5cad67f9-abe9-4145-aaaf-3eb683ea3de0-3880*2_40107',
+        u'ch_650|651.7.infinite.item.15*duokan-editor-1500449829281-3880*100_319120',
+        u'ch_637.0.slider.0*201_618',
+
+        u'ch_637.0.slider.0*trance_id*201_618',
+        u'ch_637.0.slider.item.0*2_15237',
+        u'ch_682.3.b.5*2_300882'
+
+    ]
+
+    # pattern = re.compile(r'ch_(\d+)\.(\d+)\.([^\.]+)(?:\.([^\.]+))?\.(\d+)(?:\*([^\*]+))?\*(\d+)_([^_]+)')
+    pattern = re.compile(r'ch_(\d+)\.(\d+)\.([^.]+)(?:\.([^.]+))?\.(\d+)(?:\*([^*]+))?\*(\d+)_([^_]+)')
+
+    for url in urls:
+
+
+
+        tracks = url.split('!')
+        for t in tracks:
+
+            print '-' * 50
+
+            m = pattern.match(t)
+
+            print 't=', t
+            if m:
+                print 'match'
+                # print m.group(1), m.group(2), m.group(3), m.group(4), m.group(5), m.group(6), m.group(7), m.group(8)
+
+                root, module_seq, module_name, sub_module = m.group(1), m.group(2), m.group(3), m.group(4)
+                sub_seq, trace_id, module_type, module_id = m.group(5), m.group(6), m.group(7), m.group(8)
+
+
+                print root, module_seq, module_name, sub_module, sub_seq, trace_id, module_type, module_id
+
+
+
+            #
+            # print '-' * 100
+            #
+            #
+            #
+            #
+            # trace_id = ''
+            # items = t.split('*')
+            # if len(items) == 3:
+            #     content, trace_id, content_meta = items
+            # elif len(items) == 2:
+            #     content, content_meta = items
+            #
+            #
+            # content = content.split('.')
+            # if len(content) == 3:
+            #     base, module_seq, modelue_key = content
+            #     print base, module_seq, modelue_key
+            # elif len(content) == 4:
+            #     base, module_seq, submodule, submodule_seq = content
+            #     print base, module_seq, submodule, submodule_seq
+            #
+            # if trace_id:
+            #     print 'trace_id =', trace_id
+            #
+            #
+            # module_type, module_id = content_meta.split('_')
+            #
+            #
+            # print trace_id
+            #
+            #
+            # print
+            #
+            #
+            #
+            # for ii in items:
+            #     print ii
+
+
+
+
+
+
+
+
+
 if __name__ == '__main__':
+
+    exact_info()
     # title = u'看得见的中国史 -- 330'
     #
     # title = u'看得见的中国史 -- 330'
