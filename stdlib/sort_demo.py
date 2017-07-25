@@ -38,9 +38,9 @@ com_dict = {
 # print com_dict
 
 a = com_dict.items()
-print a
+print 'old:', a
 a.sort(key=lambda ch: (ch[1]['value'], ch[1]['code']))
-print a
+print 'ordered:', a
 
 
 
