@@ -13,14 +13,17 @@ def _hash(value ):
     ha = unpack_from('>I', k)
     return ha
 
+# 每个节点指定一个 key，这些都是离散的点
 for n in range(NODES):
     h = _hash(n)
     ring.append(h)
 ring.sort()
 
+# 将 item 放到具体的节点上，看 item 的 key 落在 range的那个区间上
 for item in range(ITEMS):
     h = _hash(item)
     from bisect import bisect_left
+
     n = bisect_left(ring, h) % NODES
     node_stat[n] += 1
 
